@@ -3,15 +3,66 @@
 <head>
     <title>Handlebars</title>
     <link rel="stylesheet" href="style.css">
-
-    <script id="itemTemplate" type="text/x-handlebars-template">
-        {{#each employees}}
-        <p>{{name}}</p>
-        {{/each}}
-    </script>
-
+    <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.5.js"></script>
 </head>
 <body>
+
+
+<script id="itemTemplate" type="text/x-handlebars-template">
+    {{#each employees}}
+    <div class="itemTemplateWrapper">
+        <p>{{name}}</p>
+        <p>{{phone}}</p>
+        <p>{{email}}</p>
+        <p>{{title}}</p>
+        <p>{{#if fulltime}}
+            Full-time employee
+            {{else}}
+            Part-time employee
+            {{/if}}
+        </p>
+    </div>
+    {{/each}}
+</script>
+
+<!--<script type="text/javascript" src="script.js"></script> Script virkar ekki af eitthverri ástæðu-->
+<script>
+
+    $("document").ready(function () {
+        var template = $("#itemTemplate").html();
+        var renderer = Handlebars.compile(template);
+        var result = renderer({
+            "employees": [{
+                "name": "Henry Handsome",
+                "phone": "+1-212-555-1234",
+                "email": "pensive@example.com",
+                "title": "Senior VP of Basketweaving",
+                "fulltime": true
+            }, {
+                "name": "Penelope Persistent",
+                "phone": "+1-212-555-8000",
+                "email": "truthful@example.com",
+                "title": "Principal Understudy",
+                "fulltime": false
+            }, {
+                "name": "Sam Serendipity",
+                "phone": "+1-212-555-9876",
+                "email": "helpful@example.com",
+                "title": "Chief Cook and Bottle Washer",
+                "fulltime": true
+            }, {
+                "name": "Tom Terriffic",
+                "phone": "+1-212-555-0011",
+                "email": "grumpy@example.com",
+                "title": "Janitor",
+                "fulltime": false
+            }]
+        });
+
+        $("#container").html(result);
+    });
+</script>
 
 <h1>Conditionals and Loops in Templates with Handlebars JS</h1>
 <h3>Handlebars has support for basic logic built in.</h3>
@@ -19,8 +70,5 @@
 <!-- This is the container where the templates will be instantiated -->
 <div id="container"></div>
 <!-- Ná í scriptin -->
-<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="js/handlebars-v4.0.5.js"></script>
-<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
