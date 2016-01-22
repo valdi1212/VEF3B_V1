@@ -1,0 +1,14 @@
+{{#each employees}}
+    <div class="itemTemplateWrapper">
+        <p>{{name}}</p>
+        <p>{{phone}}</p>
+        <p>{{email}}</p>
+        <p>{{title}}</p>
+        <p>{{#if fulltime}}
+            Full-time employee
+        {{else}}
+            Part-time employee
+        {{/if}}
+        </p>
+    </div>
+{{/each}}
